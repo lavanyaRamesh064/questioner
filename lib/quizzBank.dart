@@ -1,7 +1,10 @@
+import 'dart:ffi';
+
 import 'question.dart';
 
 class QuizzBank {
-  List<Question> questionArray = [
+  int _questionNumber = 0;
+  List<Question> _questionArray = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -28,4 +31,18 @@ class QuizzBank {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
+
+  void getNextQuestion() {
+    if (_questionNumber < _questionArray.length - 1) {
+      _questionNumber++;
+    }
+  }
+
+  String getQuestionText() {
+    return _questionArray[_questionNumber].questionText;
+  }
+
+  bool getCorrectAnswer() {
+    return _questionArray[_questionNumber].questionAnswer;
+  }
 }
